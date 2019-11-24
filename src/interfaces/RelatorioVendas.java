@@ -5,12 +5,15 @@
  */
 package interfaces;
 
+import Relatorios.RVendas;
+import classes.Vendas;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.sun.xml.internal.ws.org.objectweb.asm.Opcodes;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,9 +31,7 @@ public class RelatorioVendas extends javax.swing.JFrame {
      */
     public RelatorioVendas() {
         initComponents();
-        jCheckBLucroVendas.setSelected(false);
-        jCheckBQtdVendasAno.setSelected(false);
-        jCheckBQtdVendasMes.setSelected(false);
+        jBGerarRela.setEnabled(false);
     }
 
     /**
@@ -47,6 +48,8 @@ public class RelatorioVendas extends javax.swing.JFrame {
         jCheckBQtdVendasAno = new javax.swing.JCheckBox();
         jCheckBQtdVendasMes = new javax.swing.JCheckBox();
         jBGerarRela = new javax.swing.JButton();
+        jBProcurarDiretorio = new javax.swing.JButton();
+        txtCaminho = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +68,13 @@ public class RelatorioVendas extends javax.swing.JFrame {
             }
         });
 
+        jBProcurarDiretorio.setText("Procurar Diretorio");
+        jBProcurarDiretorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBProcurarDiretorioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -72,13 +82,20 @@ public class RelatorioVendas extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBQtdVendasMes)
-                    .addComponent(jCheckBQtdVendasAno)
-                    .addComponent(jCheckBLucroVendas)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jBGerarRela)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBQtdVendasMes)
+                            .addComponent(jCheckBQtdVendasAno)
+                            .addComponent(jCheckBLucroVendas))
+                        .addContainerGap(35, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBGerarRela, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtCaminho)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBProcurarDiretorio)))
+                        .addGap(16, 16, 16))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,9 +106,13 @@ public class RelatorioVendas extends javax.swing.JFrame {
                 .addComponent(jCheckBQtdVendasAno)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBQtdVendasMes)
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBProcurarDiretorio)
+                    .addComponent(txtCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jBGerarRela)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -116,25 +137,108 @@ public class RelatorioVendas extends javax.swing.JFrame {
 
     private void jBGerarRelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGerarRelaActionPerformed
         Document documentPDF = new Document();
-        boolean lucro;
         try {
-            PdfWriter.getInstance(documentPDF, new FileOutputStream("\\Relatório de vendas.pdf"));
-
+            PdfWriter.getInstance(documentPDF, new FileOutputStream(txtCaminho.getText() + "\\Relatório de vendas.pdf"));
+            PdfPTable table = new PdfPTable(6);
             documentPDF.open();
             documentPDF.setPageSize(PageSize.A4);
-            if(jCheckBLucroVendas.setSelected(true)){
-                
+            if ((jCheckBLucroVendas.isSelected()) && (jCheckBQtdVendasAno.isSelected()) && (jCheckBQtdVendasMes.isSelected())) {
+
+                //1 2
+            } else if ((jCheckBLucroVendas.isSelected()) && (jCheckBQtdVendasAno.isSelected())) {
+
+                //1 3
+            } else if ((jCheckBLucroVendas.isSelected()) && (jCheckBQtdVendasMes.isSelected())) {
+
+                //2 3
+            } else if ((jCheckBQtdVendasAno.isSelected()) && (jCheckBQtdVendasMes.isSelected())) {
+
+                //1
+            } else if (jCheckBLucroVendas.isSelected()) {
+
+                String codi = "";
+                String nomePro = "";
+                String quantidade = "";
+                String valorVenda = "";
+                String mesDaVenda = "";
+                String anoDaVenda = "";
+
+                for (int i = 0; i < Vendas.vendas.size(); i++) {
+                    codi = String.valueOf(Vendas.vendas.get(i).getCodProdutoVendido());
+                    nomePro = Vendas.vendas.get(i).getNome();
+                    quantidade = String.valueOf(Vendas.vendas.get(i).getQuantidade());
+                    valorVenda = String.valueOf(Vendas.vendas.get(i).getValorVenda());
+                    mesDaVenda = String.valueOf(Vendas.vendas.get(i).getMes());
+                    anoDaVenda = String.valueOf(Vendas.vendas.get(i).getAno());
+
+                }
+
+                PdfPCell cod = new PdfPCell(new Paragraph("Código"));
+                PdfPCell nome = new PdfPCell(new Paragraph("Nome"));
+                PdfPCell qtd = new PdfPCell(new Paragraph("Quantidade"));
+                PdfPCell valor = new PdfPCell(new Paragraph("Valor venda"));
+                PdfPCell mesVenda = new PdfPCell(new Paragraph("Mês venda"));
+                PdfPCell anoVenda = new PdfPCell(new Paragraph("Ano venda"));
+
+                table.addCell(cod);
+                table.addCell(nome);
+                table.addCell(qtd);
+                table.addCell(valor);
+                table.addCell(mesVenda);
+                table.addCell(anoVenda);
+
+                PdfPCell codC = new PdfPCell(new Paragraph(codi));
+                PdfPCell nomeC = new PdfPCell(new Paragraph(nomePro));
+                PdfPCell qtdC = new PdfPCell(new Paragraph(quantidade));
+                PdfPCell valorC = new PdfPCell(new Paragraph(valorVenda));
+                PdfPCell mesVendaC = new PdfPCell(new Paragraph(mesDaVenda));
+                PdfPCell anoVendaC = new PdfPCell(new Paragraph(anoDaVenda));
+
+                table.addCell(codC);
+                table.addCell(nomeC);
+                table.addCell(qtdC);
+                table.addCell(valorC);
+                table.addCell(mesVendaC);
+                table.addCell(anoVendaC);
+                documentPDF.add(table);
+                //2
+            } else if (jCheckBQtdVendasAno.isSelected()) {
+
+                //3
+            } else if (jCheckBQtdVendasMes.isSelected()) {
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Nenhum tipo de relatório selecionado");
             }
-            documentPDF.add(new Paragraph("Ola Mundo!!"));
+            //documentPDF.add(new Paragraph("Ola Mundo!!"));
         } catch (DocumentException de) {
             de.printStackTrace();
-        } catch (IOException ioe){
+        } catch (IOException ioe) {
             ioe.printStackTrace();
-        } finally{
+        } finally {
+
             documentPDF.close();
             JOptionPane.showMessageDialog(null, "Relatório gerado com sucesso!");
         }
+
+        //1 2 3
+
     }//GEN-LAST:event_jBGerarRelaActionPerformed
+
+    private void jBProcurarDiretorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBProcurarDiretorioActionPerformed
+        jBGerarRela.setEnabled(true);
+        JFileChooser local = new JFileChooser();
+        local.setDialogTitle("Selecione a pasta");
+        local.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        int opcao = local.showOpenDialog(this);
+        if (opcao == JFileChooser.APPROVE_OPTION) {
+            File file = new File("caminho");
+            file = local.getSelectedFile();
+            String caminho = file.getAbsolutePath();
+            txtCaminho.setText(caminho);
+        }
+    }//GEN-LAST:event_jBProcurarDiretorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,9 +277,11 @@ public class RelatorioVendas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBGerarRela;
+    private javax.swing.JButton jBProcurarDiretorio;
     private javax.swing.JCheckBox jCheckBLucroVendas;
     private javax.swing.JCheckBox jCheckBQtdVendasAno;
     private javax.swing.JCheckBox jCheckBQtdVendasMes;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtCaminho;
     // End of variables declaration//GEN-END:variables
 }

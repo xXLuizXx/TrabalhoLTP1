@@ -18,6 +18,7 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     private int codLogin;
+
     public Principal(int cod) {
         initComponents();
         codLogin = cod;
@@ -163,15 +164,21 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public boolean validarAdm(int cod){
-        cod = codLogin;
-        
-        if (CadastrarFuncionario.cadastrarUsuario.get(cod).getPerm().equals("Administrador")) {
-            return true;
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para acessar essa tela!");
-            return false;
+    public boolean validarAdm(int cod) {
+        boolean adm = false;
+        for (int i = 0; i < CadastrarFuncionario.cadastrarUsuario.size(); i++) {
+            if (CadastrarFuncionario.cadastrarUsuario.get(i).getId() == cod) {
+                int posi = i;
+                if (CadastrarFuncionario.cadastrarUsuario.get(posi).getPerm().equals("Administrador")) {
+                    adm = true;
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para acessar essa tela!");
+                    adm = false;
+                }
+            }
+
         }
+        return adm;
     }
     private void jMIGerenciarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIGerenciarProdActionPerformed
         for (int i = 0; i < CadastrarFuncionario.cadastrarUsuario.size(); i++) {
@@ -219,7 +226,6 @@ public class Principal extends javax.swing.JFrame {
     private void jMIEfeVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIEfeVendaActionPerformed
         VenderProduto retirarProduto = new VenderProduto();
         retirarProduto.setVisible(true);
-        dispose();
     }//GEN-LAST:event_jMIEfeVendaActionPerformed
 
     private void jMIRelatorioProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIRelatorioProdActionPerformed
@@ -236,7 +242,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMISairActionPerformed
 
     private void jMIPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIPerfilActionPerformed
-        
+
         Perfil perfil = new Perfil(codLogin);
         perfil.setVisible(true);
     }//GEN-LAST:event_jMIPerfilActionPerformed

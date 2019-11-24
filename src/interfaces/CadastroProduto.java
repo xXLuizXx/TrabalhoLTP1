@@ -55,11 +55,11 @@ public class CadastroProduto extends javax.swing.JFrame {
         for (int i = 0; i < CadastrarProduto.cadastrarProduto.size(); i++) {
             dtmProdutos.addRow(new Object[]{CadastrarProduto.cadastrarProduto.get(i).getCodproduto(),
                 CadastrarProduto.cadastrarProduto.get(i).getNome(),
-                CadastrarProduto.cadastrarProduto.get(i).getQuantidade(),
                 CadastrarProduto.cadastrarProduto.get(i).getMarca(),
                 CadastrarProduto.cadastrarProduto.get(i).getPeso(),
                 CadastrarProduto.cadastrarProduto.get(i).getPrecoAqui(),
                 CadastrarProduto.cadastrarProduto.get(i).getPrecoVenda(),
+                CadastrarProduto.cadastrarProduto.get(i).getQuantidade(),
                 CadastrarProduto.cadastrarProduto.get(i).getCodfornecedor()});
 
         }
