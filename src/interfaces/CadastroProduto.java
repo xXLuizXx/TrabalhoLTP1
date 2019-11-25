@@ -48,8 +48,7 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtQuantidade.setDocument(new SomenteNumeros());
         txtNome.setDocument(new LimitarDigitos(40));
         txtMarca.setDocument(new LimitarDigitos(40));
-        txtTPrAquisi.setDocument(new LimitarDigitos(5));
-        txtQuantidade.setDocument(new LimitarDigitos(5));
+        
         alterar = false;
         DefaultTableModel dtmProdutos = (DefaultTableModel) jTProdutos.getModel();
         for (int i = 0; i < CadastrarProduto.cadastrarProduto.size(); i++) {
@@ -375,6 +374,7 @@ public class CadastroProduto extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoActionPerformed
@@ -449,7 +449,8 @@ public class CadastroProduto extends javax.swing.JFrame {
             txtQuantidade.setEnabled(true);
             txtMarca.setEnabled(true);
             txtTPrAquisi.setEnabled(true);
-            jCBFornecedores.setEnabled(true);
+            txtDataAqui.setEnabled(false);
+            jCBFornecedores.setEnabled(false);
         } else {
             int cod = gerar_codigo();
             String nome = txtNome.getText();
@@ -509,7 +510,8 @@ public class CadastroProduto extends javax.swing.JFrame {
                     txtUnidaMedida.setEnabled(false);
                     txtPreVenda.setEnabled(false);
                     txtTPrAquisi.setEnabled(false);
-                    jCBFornecedores.setEnabled(true);
+                    txtDataAqui.setEnabled(false);
+                    jCBFornecedores.setEnabled(false);
                 }
             }
         }

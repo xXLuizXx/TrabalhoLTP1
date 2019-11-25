@@ -25,6 +25,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
 
     public CadastroFuncionario() {
         initComponents();
+        
         jBNovo.setEnabled(true);
         jBCadastrar.setEnabled(false);
         jBAlterar.setEnabled(false);
@@ -289,6 +290,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     public boolean validarData(String s) {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -350,6 +352,17 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         jBCadastrar.setEnabled(true);
         return validou;
     }
+    public boolean emailRepetido(String email) {
+        boolean achou = false;
+        for (int i = 0; i < CadastrarFuncionario.cadastrarUsuario.size(); i++) {
+            if (CadastrarFuncionario.cadastrarUsuario.get(i).getEmail().equals(email)) {
+                achou = true;
+                JOptionPane.showMessageDialog(rootPane, "E-mail já cadastrado");
+                break;
+            }
+        }
+        return achou;
+    }
 
     public boolean validarCPF(String cpf) {
         boolean achou = false;
@@ -393,6 +406,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             String dataNasc = txtDataNasc.getText();
             String sexo = String.valueOf(jCBSexo.getSelectedItem());
             boolean achou = validarCPF(cpf);
+            boolean achouEmail = emailRepetido(email);
             boolean validarData = validarData(dataNasc);
             boolean validou = validar_email(email);
             if (validou == true) {
@@ -423,7 +437,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                     CadastrarFuncionario cadastrarUsuario = new CadastrarFuncionario();
                     cadastrarUsuario.cadastro(cod, nome, cpf, email, senha, cargo, permi, sexo, dataNasc);
 
-                    if ((!achou) && (validarData)) {
+                    if ((!achou) && (!achouEmail) && (validarData)) {
                         CadastrarFuncionario.cadastrarUsuario.add(cadastrarUsuario);
 
                         DefaultTableModel dtm = (DefaultTableModel) jTDadosUsuario.getModel();

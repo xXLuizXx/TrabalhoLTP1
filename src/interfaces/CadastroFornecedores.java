@@ -25,7 +25,7 @@ public class CadastroFornecedores extends javax.swing.JFrame {
 
     public CadastroFornecedores() {
         initComponents();
-
+        
         txtCnpj.setEnabled(false);
         txtNome.setEnabled(false);
         txtNomeFantasia.setEnabled(false);
@@ -229,6 +229,7 @@ public class CadastroFornecedores extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     public int gerarCodigo() {
         int cod = 1;
@@ -255,7 +256,6 @@ public class CadastroFornecedores extends javax.swing.JFrame {
         Pattern p = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$");
         Matcher m = p.matcher(email);
         if (m.find()) {
-            JOptionPane.showMessageDialog(rootPane, "Email Valido:");
             validou = true;
         } else {
             JOptionPane.showMessageDialog(rootPane, "Email Invalido:");

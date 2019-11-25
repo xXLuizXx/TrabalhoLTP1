@@ -50,7 +50,7 @@ public class Login extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         jBEntrar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jBCadastrar = new javax.swing.JButton();
+        jBNovoUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -79,10 +79,10 @@ public class Login extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/IconLogin.jpg"))); // NOI18N
 
-        jBCadastrar.setText("Cadastrar");
-        jBCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        jBNovoUsuario.setText("Novo Usuário");
+        jBNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCadastrarActionPerformed(evt);
+                jBNovoUsuarioActionPerformed(evt);
             }
         });
 
@@ -106,7 +106,7 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtLogin)
                             .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)))
-                    .addComponent(jBCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
+                    .addComponent(jBNovoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -125,7 +125,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jBEntrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBCadastrar)
+                .addComponent(jBNovoUsuario)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -186,11 +186,11 @@ public class Login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtSenhaKeyPressed
 
-    private void jBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastrarActionPerformed
+    private void jBNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoUsuarioActionPerformed
         CadastroFuncionario cadastroUsuario = new CadastroFuncionario();
         cadastroUsuario.setVisible(true);
        
-    }//GEN-LAST:event_jBCadastrarActionPerformed
+    }//GEN-LAST:event_jBNovoUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,8 +228,8 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBCadastrar;
     private javax.swing.JButton jBEntrar;
+    private javax.swing.JButton jBNovoUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

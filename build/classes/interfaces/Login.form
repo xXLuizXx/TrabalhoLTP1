@@ -67,7 +67,7 @@
                               <Component id="txtSenha" pref="257" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jBCadastrar" alignment="0" pref="317" max="32767" attributes="0"/>
+                      <Component id="jBNovoUsuario" alignment="0" pref="317" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -91,7 +91,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jBEntrar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jBCadastrar" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBNovoUsuario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -131,12 +131,12 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jBCadastrar">
+        <Component class="javax.swing.JButton" name="jBNovoUsuario">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cadastrar"/>
+            <Property name="text" type="java.lang.String" value="Novo Usu&#xe1;rio"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCadastrarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBNovoUsuarioActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -18,9 +18,29 @@ public class Vendas {
     private int mes;
     private int ano;
     private double valorVenda;
+    private double valorGasto;
     private double valorTotalVenda;
+    private double lucro;
+    
     public static ArrayList<Vendas> vendas = new ArrayList<>();
 
+    public double getLucro() {
+        return lucro;
+    }
+
+    public void setLucro(double lucro) {
+        this.lucro = lucro;
+    }
+    
+    public double getValorGasto() {
+        return valorGasto;
+    }
+
+    public void setValorGasto(double valorGasto) {
+        this.valorGasto = valorGasto;
+    }
+
+    
     public String getNome() {
         return nome;
     }
@@ -80,7 +100,7 @@ public class Vendas {
     
     
     
-    public void venda(int cod, String nome, int quantidade, double venda, int mes, int ano, double total){
+    public void venda(int cod, String nome, int quantidade, double venda, int mes, int ano, double total, double gasto, double lucro){
         setCodProdutoVendido(cod);
         setNome(nome);
         setQuantidade(quantidade);
@@ -88,6 +108,8 @@ public class Vendas {
         setMes(mes);
         setAno(ano);
         setValorTotalVenda(total);
+        setValorGasto(gasto);
+        setLucro(lucro);
     }
     
 }

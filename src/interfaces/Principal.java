@@ -5,7 +5,10 @@
  */
 package interfaces;
 
+import Relatorios.RelatorioVendas;
+import classes.CadastrarFornecedor;
 import classes.CadastrarFuncionario;
+import classes.CadastrarProduto;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,8 +23,19 @@ public class Principal extends javax.swing.JFrame {
     private int codLogin;
 
     public Principal(int cod) {
+        this.setExtendedState(MAXIMIZED_BOTH);
         initComponents();
         codLogin = cod;
+        for (int i = 0; i < CadastrarFornecedor.cadastrarFornecedor.size(); i++) {
+            if (CadastrarFornecedor.cadastrarFornecedor.size() == 0) {
+                CadastroProduto cadastroProduto = new CadastroProduto();
+                cadastroProduto.setEnabled(false);
+            } else {
+                CadastroProduto cadastroProduto = new CadastroProduto();
+                cadastroProduto.setEnabled(true);
+            }
+        }
+
     }
 
     /**
@@ -47,7 +61,6 @@ public class Principal extends javax.swing.JFrame {
         jMVendas = new javax.swing.JMenu();
         jMIEfeVenda = new javax.swing.JMenuItem();
         jMRelatorio = new javax.swing.JMenu();
-        jMIRelatorioProd = new javax.swing.JMenuItem();
         jMIRelatVendas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -125,14 +138,6 @@ public class Principal extends javax.swing.JFrame {
 
         jMRelatorio.setText("Relatório");
 
-        jMIRelatorioProd.setText("Produtos");
-        jMIRelatorioProd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMIRelatorioProdActionPerformed(evt);
-            }
-        });
-        jMRelatorio.add(jMIRelatorioProd);
-
         jMIRelatVendas.setText("Vendas");
         jMIRelatVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,15 +186,18 @@ public class Principal extends javax.swing.JFrame {
         return adm;
     }
     private void jMIGerenciarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIGerenciarProdActionPerformed
-        for (int i = 0; i < CadastrarFuncionario.cadastrarUsuario.size(); i++) {
-            if (validarAdm(codLogin)) {
-                CadastroProduto cadastroProduto = new CadastroProduto();
-                cadastroProduto.setVisible(true);
-                break;
-            } else {
-                CadastroProduto cadastroProduto = new CadastroProduto();
-                cadastroProduto.setVisible(false);
-                break;
+        CadastroProduto cadastroProduto = new CadastroProduto();
+        if (CadastrarFornecedor.cadastrarFornecedor.size() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Cadastre um fornecedor antes de cadastrar um produto");
+        }else{
+            for (int i = 0; i < CadastrarFuncionario.cadastrarUsuario.size(); i++) {
+                if (validarAdm(codLogin)) {
+                    cadastroProduto.setVisible(true);
+                    break;
+                } else {
+                    cadastroProduto.setVisible(false);
+                    break;
+                }
             }
         }
     }//GEN-LAST:event_jMIGerenciarProdActionPerformed
@@ -227,14 +235,6 @@ public class Principal extends javax.swing.JFrame {
         VenderProduto retirarProduto = new VenderProduto();
         retirarProduto.setVisible(true);
     }//GEN-LAST:event_jMIEfeVendaActionPerformed
-
-    private void jMIRelatorioProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIRelatorioProdActionPerformed
-        for (int i = 0; i < CadastrarFuncionario.cadastrarUsuario.size(); i++) {
-            if (validarAdm(codLogin)) {
-
-            }
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_jMIRelatorioProdActionPerformed
 
     private void jMISairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISairActionPerformed
         Login login = new Login();
@@ -307,7 +307,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMIGerenciarUsu;
     private javax.swing.JMenuItem jMIPerfil;
     private javax.swing.JMenuItem jMIRelatVendas;
-    private javax.swing.JMenuItem jMIRelatorioProd;
     private javax.swing.JMenuItem jMISair;
     private javax.swing.JMenu jMProdutos;
     private javax.swing.JMenu jMRelatorio;
