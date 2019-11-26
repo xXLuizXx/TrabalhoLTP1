@@ -89,7 +89,9 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTDadosUsuario = new javax.swing.JTable();
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastrar Usuário"));
+        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setText("Nome: ");
 
@@ -111,6 +113,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             }
         });
 
+        jBCadastrar.setBackground(new java.awt.Color(255, 51, 102));
         jBCadastrar.setText("Cadastrar");
         jBCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +121,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             }
         });
 
+        jBNovo.setBackground(new java.awt.Color(255, 51, 102));
         jBNovo.setText("Novo");
         jBNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +131,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
 
         jLabel5.setText("Cargo:");
 
+        jBExcluir.setBackground(new java.awt.Color(255, 51, 102));
         jBExcluir.setText("Excluir");
         jBExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +139,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             }
         });
 
+        jBAlterar.setBackground(new java.awt.Color(255, 51, 102));
         jBAlterar.setText("Alterar");
         jBAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,6 +251,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 .addGap(13, 13, 13))
         );
 
+        jTDadosUsuario.setBackground(new java.awt.Color(255, 255, 255));
         jTDadosUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

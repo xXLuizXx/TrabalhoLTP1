@@ -53,7 +53,11 @@ public class Login extends javax.swing.JFrame {
         jBNovoUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 51, 255));
         setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel1.setForeground(new java.awt.Color(0, 0, 102));
 
         jLabel1.setText("E-mail: ");
 
@@ -70,6 +74,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jBEntrar.setBackground(new java.awt.Color(255, 255, 255));
         jBEntrar.setText("Login");
         jBEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +84,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/IconLogin.jpg"))); // NOI18N
 
+        jBNovoUsuario.setBackground(new java.awt.Color(255, 255, 255));
         jBNovoUsuario.setText("Novo Usuário");
         jBNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

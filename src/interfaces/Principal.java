@@ -26,15 +26,6 @@ public class Principal extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         initComponents();
         codLogin = cod;
-        for (int i = 0; i < CadastrarFornecedor.cadastrarFornecedor.size(); i++) {
-            if (CadastrarFornecedor.cadastrarFornecedor.size() == 0) {
-                CadastroProduto cadastroProduto = new CadastroProduto();
-                cadastroProduto.setEnabled(false);
-            } else {
-                CadastroProduto cadastroProduto = new CadastroProduto();
-                cadastroProduto.setEnabled(true);
-            }
-        }
 
     }
 
@@ -47,10 +38,8 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMArquivos = new javax.swing.JMenu();
-        jMISair = new javax.swing.JMenuItem();
         jMUsuarios = new javax.swing.JMenu();
         jMIPerfil = new javax.swing.JMenuItem();
         jMIGerenciarUsu = new javax.swing.JMenuItem();
@@ -62,23 +51,14 @@ public class Principal extends javax.swing.JFrame {
         jMIEfeVenda = new javax.swing.JMenuItem();
         jMRelatorio = new javax.swing.JMenu();
         jMIRelatVendas = new javax.swing.JMenuItem();
+        Sair = new javax.swing.JMenu();
+        jM1Sair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("DejaVu Serif", 3, 48)); // NOI18N
-        jLabel1.setText("Bem Vindo!");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SimpleStock.jpg"))); // NOI18N
 
-        jMArquivos.setText("Arquivo");
-
-        jMISair.setText("Sair");
-        jMISair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMISairActionPerformed(evt);
-            }
-        });
-        jMArquivos.add(jMISair);
-
-        jMenuBar1.add(jMArquivos);
+        jMenuBar1.setBackground(new java.awt.Color(0, 0, 255));
 
         jMUsuarios.setText("Usuarios");
 
@@ -148,23 +128,29 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMRelatorio);
 
+        Sair.setText("Sair");
+
+        jM1Sair.setText("Sair");
+        jM1Sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jM1SairActionPerformed(evt);
+            }
+        });
+        Sair.add(jM1Sair);
+
+        jMenuBar1.add(Sair);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 489, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, Short.MAX_VALUE)
         );
 
         pack();
@@ -236,11 +222,6 @@ public class Principal extends javax.swing.JFrame {
         retirarProduto.setVisible(true);
     }//GEN-LAST:event_jMIEfeVendaActionPerformed
 
-    private void jMISairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISairActionPerformed
-        Login login = new Login();
-        login.setVisible(true);
-    }//GEN-LAST:event_jMISairActionPerformed
-
     private void jMIPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIPerfilActionPerformed
 
         Perfil perfil = new Perfil(codLogin);
@@ -260,6 +241,11 @@ public class Principal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jMIRelatVendasActionPerformed
+
+    private void jM1SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jM1SairActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
+    }//GEN-LAST:event_jM1SairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,8 +284,9 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMArquivos;
+    private javax.swing.JMenu Sair;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem jM1Sair;
     private javax.swing.JMenu jMFornecedores;
     private javax.swing.JMenuItem jMIEfeVenda;
     private javax.swing.JMenuItem jMIGerenciarForne;
@@ -307,7 +294,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMIGerenciarUsu;
     private javax.swing.JMenuItem jMIPerfil;
     private javax.swing.JMenuItem jMIRelatVendas;
-    private javax.swing.JMenuItem jMISair;
     private javax.swing.JMenu jMProdutos;
     private javax.swing.JMenu jMRelatorio;
     private javax.swing.JMenu jMUsuarios;

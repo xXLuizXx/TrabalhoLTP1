@@ -140,41 +140,50 @@ public class RelatorioVendas extends javax.swing.JFrame {
     private void jBGerarRelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGerarRelaActionPerformed
         Document documentPDF = new Document();
         String prencherNulo = "";
-        for (int i = 0; i < Vendas.vendas.size(); i++) {
-            try {
+        String codi = "";
+        String nomePro = "";
+        String quantidade = "";
+        String valorVenda = "";
+        String mesDaVenda = "";
+        String anoDaVenda = "";
+        String valorGasto = "";
+        String lucro = "";
+        
+        try {
+            PdfWriter.getInstance(documentPDF, new FileOutputStream(txtCaminho.getText() + "//Relatório de vendas.pdf"));
+            PdfPTable tableCa = new PdfPTable(8);
+            PdfPTable table = new PdfPTable(8);
+            documentPDF.open();
+            documentPDF.newPage();
+            documentPDF.setPageSize(PageSize.A4);
+            Font fonte = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD);
+            Paragraph cab = new Paragraph("\n RELATÓRIO DE VENDAS ", fonte);
+            cab.setAlignment(Element.ALIGN_CENTER);
+            documentPDF.add(cab);
+            documentPDF.add(new Paragraph("\n"));
+            documentPDF.add(new Paragraph("\n"));
+            documentPDF.add(new Paragraph("\n"));
+        
+            for (int i = 0; i < Vendas.vendas.size(); i++) {
+                codi = String.valueOf(Vendas.vendas.get(i).getCodProdutoVendido());
+                nomePro = Vendas.vendas.get(i).getNome();
+                quantidade = String.valueOf(Vendas.vendas.get(i).getQuantidade());
+                valorVenda = String.valueOf(Vendas.vendas.get(i).getValorVenda());
+                mesDaVenda = String.valueOf(Vendas.vendas.get(i).getMes());
+                anoDaVenda = String.valueOf(Vendas.vendas.get(i).getAno());
+                valorGasto = String.valueOf(Vendas.vendas.get(i).getValorGasto());
+                lucro = String.valueOf(Vendas.vendas.get(i).getLucro());
 
-                PdfWriter.getInstance(documentPDF, new FileOutputStream(txtCaminho.getText() + "\\" + "Relatório de vendas.pdf"));
-                PdfPTable table = new PdfPTable(8);
-                documentPDF.open();
-                documentPDF.newPage();
-                documentPDF.setPageSize(PageSize.A4);
-                Font fonte = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD);
-                Paragraph cab = new Paragraph("\n RELATÓRIO DE VENDAS ", fonte);
-                cab.setAlignment(Element.ALIGN_CENTER);
-                documentPDF.add(cab);
-                documentPDF.add(new Paragraph("\n"));
-                documentPDF.add(new Paragraph("\n"));
-                documentPDF.add(new Paragraph("\n"));
-                
+                PdfPCell codC = new PdfPCell(new Paragraph(codi));
+                PdfPCell nomeC = new PdfPCell(new Paragraph(nomePro));
+                PdfPCell qtdC = new PdfPCell(new Paragraph(quantidade));
+                PdfPCell valorC = new PdfPCell(new Paragraph(valorVenda));
+                PdfPCell mesVendaC = new PdfPCell(new Paragraph(mesDaVenda));
+                PdfPCell anoVendaC = new PdfPCell(new Paragraph(anoDaVenda));
+                PdfPCell valorGastoC = new PdfPCell(new Paragraph(valorGasto));
+                PdfPCell lucrovendasC = new PdfPCell(new Paragraph(lucro));
+
                 if ((jCheckBLucroVendas.isSelected()) && (jCheckBQtdVendasAno.isSelected()) && (jCheckBQtdVendasMes.isSelected())) {
-                    String codi = "";
-                    String nomePro = "";
-                    String quantidade = "";
-                    String valorVenda = "";
-                    String mesDaVenda = "";
-                    String anoDaVenda = "";
-                    String valorGasto = "";
-                    String lucro = "";
-
-                    codi = String.valueOf(Vendas.vendas.get(i).getCodProdutoVendido());
-                    nomePro = Vendas.vendas.get(i).getNome();
-                    quantidade = String.valueOf(Vendas.vendas.get(i).getQuantidade());
-                    valorVenda = String.valueOf(Vendas.vendas.get(i).getValorVenda());
-                    mesDaVenda = String.valueOf(Vendas.vendas.get(i).getMes());
-                    anoDaVenda = String.valueOf(Vendas.vendas.get(i).getAno());
-                    valorGasto = String.valueOf(Vendas.vendas.get(i).getValorGasto());
-                    lucro = String.valueOf(Vendas.vendas.get(i).getLucro());
-
                     PdfPCell cod = new PdfPCell(new Paragraph("Código"));
                     PdfPCell nome = new PdfPCell(new Paragraph("Nome"));
                     PdfPCell qtd = new PdfPCell(new Paragraph("Quantidade"));
@@ -184,23 +193,14 @@ public class RelatorioVendas extends javax.swing.JFrame {
                     PdfPCell valorGas = new PdfPCell(new Paragraph("Valor gasto"));
                     PdfPCell lucrovendas = new PdfPCell(new Paragraph("Lucro de Vendas"));
 
-                    table.addCell(cod);
-                    table.addCell(nome);
-                    table.addCell(qtd);
-                    table.addCell(valor);
-                    table.addCell(mesVenda);
-                    table.addCell(anoVenda);
-                    table.addCell(valorGas);
-                    table.addCell(lucrovendas);
-
-                    PdfPCell codC = new PdfPCell(new Paragraph(codi));
-                    PdfPCell nomeC = new PdfPCell(new Paragraph(nomePro));
-                    PdfPCell qtdC = new PdfPCell(new Paragraph(quantidade));
-                    PdfPCell valorC = new PdfPCell(new Paragraph(valorVenda));
-                    PdfPCell mesVendaC = new PdfPCell(new Paragraph(mesDaVenda));
-                    PdfPCell anoVendaC = new PdfPCell(new Paragraph(anoDaVenda));
-                    PdfPCell valorGastoC = new PdfPCell(new Paragraph(valorGasto));
-                    PdfPCell lucrovendasC = new PdfPCell(new Paragraph(lucro));
+                    tableCa.addCell(cod);
+                    tableCa.addCell(nome);
+                    tableCa.addCell(qtd);
+                    tableCa.addCell(valor);
+                    tableCa.addCell(mesVenda);
+                    tableCa.addCell(anoVenda);
+                    tableCa.addCell(valorGas);
+                    tableCa.addCell(lucrovendas);
 
                     table.addCell(codC);
                     table.addCell(nomeC);
@@ -211,23 +211,9 @@ public class RelatorioVendas extends javax.swing.JFrame {
                     table.addCell(valorGastoC);
                     table.addCell(lucrovendasC);
 
-                    documentPDF.add(table);
+                    //documentPDF.add(table);
                     break;
                 } else if ((jCheckBLucroVendas.isSelected()) && (jCheckBQtdVendasAno.isSelected())) {
-                    String codi = "";
-                    String nomePro = "";
-                    String quantidade = "";
-                    String valorVenda = "";
-                    String anoDaVenda = "";
-                    String lucro = "";
-
-                    codi = String.valueOf(Vendas.vendas.get(i).getCodProdutoVendido());
-                    nomePro = Vendas.vendas.get(i).getNome();
-                    quantidade = String.valueOf(Vendas.vendas.get(i).getQuantidade());
-                    valorVenda = String.valueOf(Vendas.vendas.get(i).getValorVenda());
-                    anoDaVenda = String.valueOf(Vendas.vendas.get(i).getAno());
-                    lucro = String.valueOf(Vendas.vendas.get(i).getLucro());
-
                     PdfPCell cod = new PdfPCell(new Paragraph("Código"));
                     PdfPCell nome = new PdfPCell(new Paragraph("Nome"));
                     PdfPCell qtd = new PdfPCell(new Paragraph("Quantidade"));
@@ -235,21 +221,14 @@ public class RelatorioVendas extends javax.swing.JFrame {
                     PdfPCell anoVenda = new PdfPCell(new Paragraph("Ano venda"));
                     PdfPCell lucrovendas = new PdfPCell(new Paragraph("Lucro de Vendas"));
 
-                    table.addCell(cod);
-                    table.addCell(nome);
-                    table.addCell(qtd);
-                    table.addCell(valor);
-                    table.addCell(anoVenda);
-                    table.addCell(lucrovendas);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-
-                    PdfPCell codC = new PdfPCell(new Paragraph(codi));
-                    PdfPCell nomeC = new PdfPCell(new Paragraph(nomePro));
-                    PdfPCell qtdC = new PdfPCell(new Paragraph(quantidade));
-                    PdfPCell valorC = new PdfPCell(new Paragraph(valorVenda));
-                    PdfPCell anoVendaC = new PdfPCell(new Paragraph(anoDaVenda));
-                    PdfPCell lucrovendasC = new PdfPCell(new Paragraph(lucro));
+                    tableCa.addCell(cod);
+                    tableCa.addCell(nome);
+                    tableCa.addCell(qtd);
+                    tableCa.addCell(valor);
+                    tableCa.addCell(anoVenda);
+                    tableCa.addCell(lucrovendas);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
 
                     table.addCell(codC);
                     table.addCell(nomeC);
@@ -260,23 +239,9 @@ public class RelatorioVendas extends javax.swing.JFrame {
                     table.addCell(prencherNulo);
                     table.addCell(prencherNulo);
 
-                    documentPDF.add(table);
+                    //documentPDF.add(table);
                     break;
                 } else if ((jCheckBLucroVendas.isSelected()) && (jCheckBQtdVendasMes.isSelected())) {
-                    String codi = "";
-                    String nomePro = "";
-                    String quantidade = "";
-                    String valorVenda = "";
-                    String mesDaVenda = "";
-                    String lucro = "";
-
-                    codi = String.valueOf(Vendas.vendas.get(i).getCodProdutoVendido());
-                    nomePro = Vendas.vendas.get(i).getNome();
-                    quantidade = String.valueOf(Vendas.vendas.get(i).getQuantidade());
-                    valorVenda = String.valueOf(Vendas.vendas.get(i).getValorVenda());
-                    mesDaVenda = String.valueOf(Vendas.vendas.get(i).getMes());
-                    lucro = String.valueOf(Vendas.vendas.get(i).getLucro());
-
                     PdfPCell cod = new PdfPCell(new Paragraph("Código"));
                     PdfPCell nome = new PdfPCell(new Paragraph("Nome"));
                     PdfPCell qtd = new PdfPCell(new Paragraph("Quantidade"));
@@ -284,21 +249,14 @@ public class RelatorioVendas extends javax.swing.JFrame {
                     PdfPCell mesVenda = new PdfPCell(new Paragraph("Mês venda"));
                     PdfPCell lucrovendas = new PdfPCell(new Paragraph("Lucro de Vendas"));
 
-                    table.addCell(cod);
-                    table.addCell(nome);
-                    table.addCell(qtd);
-                    table.addCell(valor);
-                    table.addCell(mesVenda);
-                    table.addCell(lucrovendas);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-
-                    PdfPCell codC = new PdfPCell(new Paragraph(codi));
-                    PdfPCell nomeC = new PdfPCell(new Paragraph(nomePro));
-                    PdfPCell qtdC = new PdfPCell(new Paragraph(quantidade));
-                    PdfPCell valorC = new PdfPCell(new Paragraph(valorVenda));
-                    PdfPCell mesVendaC = new PdfPCell(new Paragraph(mesDaVenda));
-                    PdfPCell lucrovendasC = new PdfPCell(new Paragraph(lucro));
+                    tableCa.addCell(cod);
+                    tableCa.addCell(nome);
+                    tableCa.addCell(qtd);
+                    tableCa.addCell(valor);
+                    tableCa.addCell(mesVenda);
+                    tableCa.addCell(lucrovendas);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
 
                     table.addCell(codC);
                     table.addCell(nomeC);
@@ -309,37 +267,22 @@ public class RelatorioVendas extends javax.swing.JFrame {
                     table.addCell(prencherNulo);
                     table.addCell(prencherNulo);
 
-                    documentPDF.add(table);
+                    //documentPDF.add(table);
                     break;
                 } else if ((jCheckBQtdVendasAno.isSelected()) && (jCheckBQtdVendasMes.isSelected())) {
-                    String codi = "";
-                    String nomePro = "";
-                    String quantidade = "";
-                    String mesDaVenda = "";
-
-                    codi = String.valueOf(Vendas.vendas.get(i).getCodProdutoVendido());
-                    nomePro = Vendas.vendas.get(i).getNome();
-                    quantidade = String.valueOf(Vendas.vendas.get(i).getQuantidade());
-                    mesDaVenda = String.valueOf(Vendas.vendas.get(i).getMes());
-
                     PdfPCell cod = new PdfPCell(new Paragraph("Código"));
                     PdfPCell nome = new PdfPCell(new Paragraph("Nome"));
                     PdfPCell qtd = new PdfPCell(new Paragraph("Quantidade"));
                     PdfPCell mesVenda = new PdfPCell(new Paragraph("Mês venda"));
 
-                    table.addCell(cod);
-                    table.addCell(nome);
-                    table.addCell(qtd);
-                    table.addCell(mesVenda);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-
-                    PdfPCell codC = new PdfPCell(new Paragraph(codi));
-                    PdfPCell nomeC = new PdfPCell(new Paragraph(nomePro));
-                    PdfPCell qtdC = new PdfPCell(new Paragraph(quantidade));
-                    PdfPCell mesVendaC = new PdfPCell(new Paragraph(mesDaVenda));
+                    tableCa.addCell(cod);
+                    tableCa.addCell(nome);
+                    tableCa.addCell(qtd);
+                    tableCa.addCell(mesVenda);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
 
                     table.addCell(codC);
                     table.addCell(nomeC);
@@ -350,25 +293,19 @@ public class RelatorioVendas extends javax.swing.JFrame {
                     table.addCell(prencherNulo);
                     table.addCell(prencherNulo);
 
-                    documentPDF.add(table);
+                    //documentPDF.add(table);
                     break;
                 } else if (jCheckBLucroVendas.isSelected()) {
-                    String lucro = "";
-
-                    lucro = String.valueOf(Vendas.vendas.get(i).getLucro());
-
                     PdfPCell lucrovendas = new PdfPCell(new Paragraph("Lucro de Vendas"));
 
-                    table.addCell(lucrovendas);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-
-                    PdfPCell lucrovendasC = new PdfPCell(new Paragraph(lucro));
+                    tableCa.addCell(lucrovendas);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
 
                     table.addCell(lucrovendasC);
                     table.addCell(prencherNulo);
@@ -379,37 +316,22 @@ public class RelatorioVendas extends javax.swing.JFrame {
                     table.addCell(prencherNulo);
                     table.addCell(prencherNulo);
 
-                    documentPDF.add(table);
+                    //documentPDF.add(table);
                     break;
                 } else if (jCheckBQtdVendasAno.isSelected()) {
-                    String codi = "";
-                    String nomePro = "";
-                    String quantidade = "";
-                    String mesDaVenda = "";
-
-                    codi = String.valueOf(Vendas.vendas.get(i).getCodProdutoVendido());
-                    nomePro = Vendas.vendas.get(i).getNome();
-                    quantidade = String.valueOf(Vendas.vendas.get(i).getQuantidade());
-                    mesDaVenda = String.valueOf(Vendas.vendas.get(i).getMes());
-
                     PdfPCell cod = new PdfPCell(new Paragraph("Código"));
                     PdfPCell nome = new PdfPCell(new Paragraph("Nome"));
                     PdfPCell qtd = new PdfPCell(new Paragraph("Quantidade"));
                     PdfPCell mesVenda = new PdfPCell(new Paragraph("Mês venda"));
 
-                    table.addCell(cod);
-                    table.addCell(nome);
-                    table.addCell(qtd);
-                    table.addCell(mesVenda);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-
-                    PdfPCell codC = new PdfPCell(new Paragraph(codi));
-                    PdfPCell nomeC = new PdfPCell(new Paragraph(nomePro));
-                    PdfPCell qtdC = new PdfPCell(new Paragraph(quantidade));
-                    PdfPCell mesVendaC = new PdfPCell(new Paragraph(mesDaVenda));
+                    tableCa.addCell(cod);
+                    tableCa.addCell(nome);
+                    tableCa.addCell(qtd);
+                    tableCa.addCell(mesVenda);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
 
                     table.addCell(codC);
                     table.addCell(nomeC);
@@ -420,37 +342,22 @@ public class RelatorioVendas extends javax.swing.JFrame {
                     table.addCell(prencherNulo);
                     table.addCell(prencherNulo);
 
-                    documentPDF.add(table);
+                    //documentPDF.add(table);
                     break;
                 } else if (jCheckBQtdVendasMes.isSelected()) {
-                    String codi = "";
-                    String nomePro = "";
-                    String quantidade = "";
-                    String anoDaVenda = "";
-
-                    codi = String.valueOf(Vendas.vendas.get(i).getCodProdutoVendido());
-                    nomePro = Vendas.vendas.get(i).getNome();
-                    quantidade = String.valueOf(Vendas.vendas.get(i).getQuantidade());
-                    anoDaVenda = String.valueOf(Vendas.vendas.get(i).getAno());
-
                     PdfPCell cod = new PdfPCell(new Paragraph("Código"));
                     PdfPCell nome = new PdfPCell(new Paragraph("Nome"));
                     PdfPCell qtd = new PdfPCell(new Paragraph("Quantidade"));
                     PdfPCell anoVenda = new PdfPCell(new Paragraph("Ano venda"));
 
-                    table.addCell(cod);
-                    table.addCell(nome);
-                    table.addCell(qtd);
-                    table.addCell(anoVenda);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-                    table.addCell(prencherNulo);
-
-                    PdfPCell codC = new PdfPCell(new Paragraph(codi));
-                    PdfPCell nomeC = new PdfPCell(new Paragraph(nomePro));
-                    PdfPCell qtdC = new PdfPCell(new Paragraph(quantidade));
-                    PdfPCell anoVendaC = new PdfPCell(new Paragraph(anoDaVenda));
+                    tableCa.addCell(cod);
+                    tableCa.addCell(nome);
+                    tableCa.addCell(qtd);
+                    tableCa.addCell(anoVenda);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
+                    tableCa.addCell(prencherNulo);
 
                     table.addCell(codC);
                     table.addCell(nomeC);
@@ -461,22 +368,29 @@ public class RelatorioVendas extends javax.swing.JFrame {
                     table.addCell(prencherNulo);
                     table.addCell(prencherNulo);
 
-                    documentPDF.add(table);
+                    //documentPDF.add(table);
                     break;
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Nenhum tipo de relatório selecionado");
                     break;
                 }
-
-            } catch (DocumentException de) {
-                de.printStackTrace();
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            } finally {
-                documentPDF.close();
-                JOptionPane.showMessageDialog(null, "Relatório gerado com sucesso!");
             }
+            
+            documentPDF.add(tableCa);
+            
+            for (int i = 0; i < Vendas.vendas.size(); i++) {
+                documentPDF.add(table);
+            }
+            
+        } catch (DocumentException de) {
+            de.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } finally {
+            documentPDF.close();
+            JOptionPane.showMessageDialog(null, "Relatório gerado com sucesso!");
         }
+
     }//GEN-LAST:event_jBGerarRelaActionPerformed
 
     private void jBProcurarDiretorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBProcurarDiretorioActionPerformed
