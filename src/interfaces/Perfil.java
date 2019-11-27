@@ -62,17 +62,30 @@ public class Perfil extends javax.swing.JFrame {
         jBAlterarPermi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 102, 255));
 
+        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Perfil"));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/IconLogin.jpg"))); // NOI18N
 
         jLabel2.setText("Usuário:");
 
+        jlUsuaLogado.setBackground(new java.awt.Color(51, 255, 51));
+
         jLabel3.setText("Permissão:");
 
-        jBGereUsuario.setText("Gerenciar Usuário");
+        jLPermi.setBackground(new java.awt.Color(51, 255, 51));
 
+        jBGereUsuario.setBackground(new java.awt.Color(255, 51, 102));
+        jBGereUsuario.setText("Gerenciar Usuário");
+        jBGereUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGereUsuarioActionPerformed(evt);
+            }
+        });
+
+        jBAlteSenha.setBackground(new java.awt.Color(255, 51, 102));
         jBAlteSenha.setText("Alterar Senha");
         jBAlteSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +93,7 @@ public class Perfil extends javax.swing.JFrame {
             }
         });
 
+        jBAlterarPermi.setBackground(new java.awt.Color(255, 51, 102));
         jBAlterarPermi.setText("Alterar Permissão");
         jBAlterarPermi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +161,7 @@ public class Perfil extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -163,6 +177,11 @@ public class Perfil extends javax.swing.JFrame {
         AlterarPermissao alterarPermi = new AlterarPermissao();
         alterarPermi.setVisible(true);
     }//GEN-LAST:event_jBAlterarPermiActionPerformed
+
+    private void jBGereUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGereUsuarioActionPerformed
+        CadastroFuncionario cadastroFuncionario = new CadastroFuncionario();
+        cadastroFuncionario.setVisible(true);
+    }//GEN-LAST:event_jBGereUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

@@ -19,21 +19,26 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        for (int i = 0; i < CadastrarFuncionario.cadastrarUsuario.size(); i++) {
+            if (CadastrarFuncionario.cadastrarUsuario.size() > 0) {
+                jBNovoUsuario.setEnabled(false);
+            }
+        }
     }
-    public int validarLogin(String email, String senha){
+
+    public int validarLogin(String email, String senha) {
         int loginValido = -1;
         for (int i = 0; i < CadastrarFuncionario.cadastrarUsuario.size(); i++) {
-            if((CadastrarFuncionario.cadastrarUsuario.get(i).getEmail().equals(email)) && 
-               (CadastrarFuncionario.cadastrarUsuario.get(i).getSenha().equals(senha))){
+            if ((CadastrarFuncionario.cadastrarUsuario.get(i).getEmail().equals(email))
+                    && (CadastrarFuncionario.cadastrarUsuario.get(i).getSenha().equals(senha))) {
                 loginValido = CadastrarFuncionario.cadastrarUsuario.get(i).getId();
                 break;
             }
         }
-        
+
         return loginValido;
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -161,41 +166,42 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void jBEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrarActionPerformed
-        if ((txtLogin.getText().equals(""))||(txtSenha.getText().equals(""))) {
+        if ((txtLogin.getText().equals("")) || (txtSenha.getText().equals(""))) {
             JOptionPane.showMessageDialog(null, "Verifique campos em branco");
-        }else{
+        } else {
             String email = txtLogin.getText();
             String senha = txtSenha.getText();
             int loginValido = validarLogin(email, senha);
             if (loginValido != -1) {
                 Principal menu = new Principal(loginValido);
                 menu.setVisible(true);
-                
+
                 for (int i = 0; i < CadastrarFuncionario.cadastrarUsuario.size(); i++) {
                     if (loginValido == CadastrarFuncionario.cadastrarUsuario.get(i).getId()) {
                         int cod = loginValido;
                         Perfil perfil = new Perfil(cod);
                     }
-                    
+
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Login ou Senha invalidos!");
             }
         }
+        dispose();
     }//GEN-LAST:event_jBEntrarActionPerformed
 
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
 
-            if ((txtLogin.getText().equals("")) || (txtSenha.getPassword().equals(""))) {
-                JOptionPane.showMessageDialog(null, "Verifique campos em branco");
-            }
+        if ((txtLogin.getText().equals("")) || (txtSenha.getPassword().equals(""))) {
+            JOptionPane.showMessageDialog(null, "Verifique campos em branco");
+        }
 
     }//GEN-LAST:event_txtSenhaKeyPressed
 
     private void jBNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNovoUsuarioActionPerformed
         CadastroFuncionario cadastroUsuario = new CadastroFuncionario();
         cadastroUsuario.setVisible(true);
-       
+        jBNovoUsuario.setEnabled(false);
     }//GEN-LAST:event_jBNovoUsuarioActionPerformed
 
     /**

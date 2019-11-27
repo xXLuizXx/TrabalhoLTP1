@@ -7,6 +7,7 @@ package interfaces;
 
 import classeRestrCampo.LimitarDigitos;
 import classes.CadastrarFornecedor;
+import classes.CadastrarFuncionario;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -25,7 +26,7 @@ public class CadastroFornecedores extends javax.swing.JFrame {
 
     public CadastroFornecedores() {
         initComponents();
-        
+
         txtCnpj.setEnabled(false);
         txtNome.setEnabled(false);
         txtNomeFantasia.setEnabled(false);
@@ -74,6 +75,9 @@ public class CadastroFornecedores extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTCadasFornecedor = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(51, 51, 255));
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Fornecedor"));
 
         jLabel1.setText("Nome: ");
@@ -90,6 +94,7 @@ public class CadastroFornecedores extends javax.swing.JFrame {
             }
         });
 
+        jBNovo.setBackground(new java.awt.Color(255, 51, 102));
         jBNovo.setText("Novo");
         jBNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +102,7 @@ public class CadastroFornecedores extends javax.swing.JFrame {
             }
         });
 
+        jBCadastrar.setBackground(new java.awt.Color(255, 51, 102));
         jBCadastrar.setText("Cadastrar");
         jBCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +110,7 @@ public class CadastroFornecedores extends javax.swing.JFrame {
             }
         });
 
+        jBAlterar.setBackground(new java.awt.Color(255, 51, 102));
         jBAlterar.setText("Alterar");
         jBAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +118,7 @@ public class CadastroFornecedores extends javax.swing.JFrame {
             }
         });
 
+        jBExcluir.setBackground(new java.awt.Color(255, 51, 102));
         jBExcluir.setText("Excluir");
         jBExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +189,7 @@ public class CadastroFornecedores extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
+        jTCadasFornecedor.setBackground(new java.awt.Color(255, 255, 255));
         jTCadasFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -248,6 +257,23 @@ public class CadastroFornecedores extends javax.swing.JFrame {
                 break;
             }
         }
+        jBNovo.setEnabled(false);
+        return achou;
+    }
+
+    public boolean emailRepetido(String email) {
+        boolean achou = false;
+        for (int j = 0; j < CadastrarFuncionario.cadastrarUsuario.size(); j++) {
+            for (int i = 0; i < CadastrarFornecedor.cadastrarFornecedor.size(); i++) {
+                if ((CadastrarFornecedor.cadastrarFornecedor.get(i).getEmail().equals(email))
+                        || ((CadastrarFornecedor.cadastrarFornecedor.get(i).getEmail().equals(CadastrarFuncionario.cadastrarUsuario.get(j).getEmail())))) {
+                    achou = true;
+                    JOptionPane.showMessageDialog(rootPane, "E-mail já cadastrado");
+                    break;
+                }
+            }
+        }
+        jBNovo.setEnabled(false);
         return achou;
     }
 
@@ -262,6 +288,7 @@ public class CadastroFornecedores extends javax.swing.JFrame {
             validou = false;
 
         }
+        jBNovo.setEnabled(false);
         return validou;
     }
     private void txtNomeFantasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeFantasiaActionPerformed
@@ -286,7 +313,7 @@ public class CadastroFornecedores extends javax.swing.JFrame {
             jBCadastrar.setEnabled(false);
             jBNovo.setEnabled(true);
             jBAlterar.setEnabled(false);
-        jBExcluir.setEnabled(false);
+            jBExcluir.setEnabled(false);
         } else {
             int cod = gerarCodigo();
             String nome = txtNome.getText();
@@ -326,7 +353,7 @@ public class CadastroFornecedores extends javax.swing.JFrame {
                         jBCadastrar.setEnabled(false);
                         jBNovo.setEnabled(true);
                         jBAlterar.setEnabled(false);
-        jBExcluir.setEnabled(false);
+                        jBExcluir.setEnabled(false);
                     }
                 }
             }

@@ -5,11 +5,13 @@
  */
 package interfaces;
 
+import classeRestrCampo.AceitarPonto;
 import classeRestrCampo.LimitarDigitos;
 import classeRestrCampo.SomenteNumeros;
 import classes.CadastrarFornecedor;
 import classes.CadastrarProduto;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -30,7 +32,7 @@ public class CadastroProduto extends javax.swing.JFrame {
 
     public CadastroProduto() {
         initComponents();
-
+        
         jBNovo.setEnabled(true);
         jBCadastrar.setEnabled(false);
         jBAlterar.setEnabled(false);
@@ -39,16 +41,16 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtMarca.setEnabled(false);
         txtDataAqui.setEnabled(false);
         txtTPrAquisi.setEnabled(false);
-        txtTPrAquisi.setDocument(new SomenteNumeros());
+        txtTPrAquisi.setDocument(new AceitarPonto());
         txtPreVenda.setEnabled(false);
-        txtPreVenda.setDocument(new SomenteNumeros());
+        txtPreVenda.setDocument(new AceitarPonto());
         txtUnidaMedida.setEnabled(false);
         txtQuantidade.setEnabled(false);
         jCBFornecedores.setEnabled(false);
         txtQuantidade.setDocument(new SomenteNumeros());
         txtNome.setDocument(new LimitarDigitos(40));
         txtMarca.setDocument(new LimitarDigitos(40));
-        
+
         alterar = false;
         DefaultTableModel dtmProdutos = (DefaultTableModel) jTProdutos.getModel();
         for (int i = 0; i < CadastrarProduto.cadastrarProduto.size(); i++) {
@@ -59,8 +61,8 @@ public class CadastroProduto extends javax.swing.JFrame {
                 CadastrarProduto.cadastrarProduto.get(i).getPrecoAqui(),
                 CadastrarProduto.cadastrarProduto.get(i).getPrecoVenda(),
                 CadastrarProduto.cadastrarProduto.get(i).getQuantidade(),
-                CadastrarProduto.cadastrarProduto.get(i).getCodfornecedor()});
-
+                CadastrarProduto.cadastrarProduto.get(i).getCodfornecedor(),
+                CadastrarProduto.cadastrarProduto.get(i).getDataAqui()});
         }
 
         jCBFornecedores.addItem("Selecione");
@@ -165,7 +167,9 @@ public class CadastroProduto extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jTable4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 51, 255));
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro De Produto"));
 
         txtNome.addActionListener(new java.awt.event.ActionListener() {
@@ -174,6 +178,7 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         });
 
+        jBNovo.setBackground(new java.awt.Color(255, 51, 102));
         jBNovo.setText("Novo");
         jBNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +186,7 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         });
 
+        jBCadastrar.setBackground(new java.awt.Color(255, 51, 102));
         jBCadastrar.setText("Cadastrar");
         jBCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,6 +210,7 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         });
 
+        jBAlterar.setBackground(new java.awt.Color(255, 51, 102));
         jBAlterar.setText("Alterar");
         jBAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,6 +218,7 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         });
 
+        jBExcluir.setBackground(new java.awt.Color(255, 51, 102));
         jBExcluir.setText("Excluir");
         jBExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,16 +337,17 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jTProdutos.setBackground(new java.awt.Color(255, 255, 255));
         jTProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Codigo", "Nome", "Marca", "Peso", "Preço Aquisição", "Preço Venda", "Quantidade", "Fornecedor"
+                "Codigo", "Nome", "Marca", "Peso", "Preço Aquisição", "Preço Venda", "Quantidade", "Fornecedor", "Data Aquisição"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -368,7 +377,7 @@ public class CadastroProduto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -395,9 +404,19 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtMarca.setText("");
         txtQuantidade.setText("");
         txtTPrAquisi.setText("");
-
-
+        txtDataAqui.setText("");
+        txtPreVenda.setText("");
+        txtTPrAquisi.setText("");
+        txtUnidaMedida.setText("");
     }//GEN-LAST:event_jBNovoActionPerformed
+
+    public double calcularTotalGasto() {
+        double totalGasto = 0;
+        for (int i = 0; i < CadastrarProduto.cadastrarProduto.size(); i++) {
+            totalGasto += (CadastrarProduto.cadastrarProduto.get(i).getPrecoAqui() * CadastrarProduto.cadastrarProduto.get(i).getQuantidade());
+        }
+        return totalGasto;
+    }
 
     public int gerar_codigo() {
         int cod = 1;
@@ -437,7 +456,7 @@ public class CadastroProduto extends javax.swing.JFrame {
         jBAlterar.setEnabled(false);
         jBExcluir.setEnabled(false);
         if (txtNome.getText().equals("") || txtMarca.getText().equals("") || txtQuantidade.getText().equals("")
-                || txtTPrAquisi.getText().equals("") || (txtUnidaMedida.getText().equals("")) || (txtPreVenda.getText().equals(""))) {
+                || txtTPrAquisi.getText().equals("") || (txtUnidaMedida.getText().equals("")) || (txtPreVenda.getText().equals("")) || (jCBFornecedores.getSelectedItem().equals("")) || (txtDataAqui.getText().equals("  /  /    "))) {
             JOptionPane.showMessageDialog(rootPane, "Verificar campos em branco: ");
             jBNovo.setEnabled(false);
             jBCadastrar.setEnabled(true);
@@ -457,14 +476,25 @@ public class CadastroProduto extends javax.swing.JFrame {
             String marca = txtMarca.getText();
             String dataAqui = txtDataAqui.getText();
             int quantidade = Integer.parseInt(txtQuantidade.getText());
-            double precoAqui = Double.parseDouble(txtTPrAquisi.getText());
+            double precoAquisi = Double.parseDouble(txtTPrAquisi.getText());
+            double precoDeVenda = Double.parseDouble(txtPreVenda.getText());
+            
+            DecimalFormat df = new DecimalFormat("#,###.00");
+            
+            String precoAq = df.format(precoAquisi);
+            String precoVen = df.format(precoDeVenda);
+            
+            double precoAqui = Double.parseDouble(precoAq);
+            double precoVenda = Double.parseDouble(precoVen);
             String unidadeMedida = txtUnidaMedida.getText();
-            double precoVenda = Double.parseDouble(txtPreVenda.getText());
             String fornecedor = "";
             int indexfornecedor = 0;
             int codfornecedor = 0;
             boolean data = validarData(dataAqui);
-            if (alterar == true) {
+            int mes;
+            int ano;
+
+            if ((alterar == true) && (data)) {
                 alterar = false;
                 int linhasel = jTProdutos.getSelectedRow();
                 CadastrarProduto.cadastrarProduto.get(linhasel).setNome(nome);
@@ -474,6 +504,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                 CadastrarProduto.cadastrarProduto.get(linhasel).setPrecoVenda(precoVenda);
                 CadastrarProduto.cadastrarProduto.get(linhasel).setQuantidade(quantidade);
                 CadastrarProduto.cadastrarProduto.get(linhasel).setCodfornecedor(codfornecedor);
+                CadastrarProduto.cadastrarProduto.get(linhasel).setDataAqui(dataAqui);
                 jTProdutos.setValueAt(nome, linhasel, 1);
                 jTProdutos.setValueAt(marca, linhasel, 2);
                 jTProdutos.setValueAt(unidadeMedida, linhasel, 3);
@@ -481,6 +512,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                 jTProdutos.setValueAt(precoVenda, linhasel, 5);
                 jTProdutos.setValueAt(quantidade, linhasel, 6);
                 jTProdutos.setValueAt(fornecedor, linhasel, 7);
+                jTProdutos.setValueAt(dataAqui, linhasel, 8);
                 JOptionPane.showMessageDialog(rootPane, "Dados Alterados Com Sucesso:");
             } else {
                 for (int i = 0; i < CadastrarFornecedor.cadastrarFornecedor.size(); i++) {
@@ -490,13 +522,15 @@ public class CadastroProduto extends javax.swing.JFrame {
                         fornecedor = CadastrarFornecedor.cadastrarFornecedor.get(i).getNomeFantasia();
                     }
                 }
-
+                mes = Integer.parseInt(dataAqui.substring(3, 5));
+                ano = Integer.parseInt(dataAqui.substring(6, 10));
+                double valorTotalGasto = calcularTotalGasto();
                 CadastrarProduto cadastrarProduto = new CadastrarProduto();
-                cadastrarProduto.cadastro(cod, nome, quantidade, marca, unidadeMedida, precoAqui, precoVenda, codfornecedor);
+                cadastrarProduto.cadastro(cod, nome, quantidade, marca, unidadeMedida, precoAqui, precoVenda, codfornecedor, dataAqui, mes, ano, valorTotalGasto);
                 if (data) {
                     CadastrarProduto.cadastrarProduto.add(cadastrarProduto);
                     DefaultTableModel dtmProdutos = (DefaultTableModel) jTProdutos.getModel();
-                    dtmProdutos.addRow(new Object[]{cod, nome, marca, unidadeMedida, precoAqui, precoVenda,quantidade, fornecedor});
+                    dtmProdutos.addRow(new Object[]{cod, nome, marca, unidadeMedida, precoAqui, precoVenda, quantidade, fornecedor, dataAqui});
 
                     JOptionPane.showMessageDialog(rootPane, "Dados Cadastrados Com Sucesso:");
 
@@ -544,6 +578,8 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtPreVenda.setEnabled(false);
         txtQuantidade.setEnabled(false);
         txtTPrAquisi.setEnabled(false);
+        jCBFornecedores.setEnabled(false);
+        txtDataAqui.setEnabled(false);
     }//GEN-LAST:event_jBExcluirActionPerformed
 
     private void jBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarActionPerformed
@@ -557,6 +593,8 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtPreVenda.setEnabled(true);
         txtQuantidade.setEnabled(true);
         txtTPrAquisi.setEnabled(true);
+        jCBFornecedores.setEnabled(true);
+        txtDataAqui.setEnabled(true);
         alterar = true;
     }//GEN-LAST:event_jBAlterarActionPerformed
 
@@ -572,6 +610,7 @@ public class CadastroProduto extends javax.swing.JFrame {
             txtPreVenda.setText("");
             txtQuantidade.setText("");
             txtTPrAquisi.setText("");
+            txtDataAqui.setText("");
             int linhasel = jTProdutos.getSelectedRow();
             txtNome.setText(jTProdutos.getValueAt(linhasel, 1).toString());
             txtMarca.setText(jTProdutos.getValueAt(linhasel, 2).toString());
@@ -579,6 +618,14 @@ public class CadastroProduto extends javax.swing.JFrame {
             txtTPrAquisi.setText(jTProdutos.getValueAt(linhasel, 4).toString());
             txtPreVenda.setText(jTProdutos.getValueAt(linhasel, 5).toString());
             txtQuantidade.setText(jTProdutos.getValueAt(linhasel, 6).toString());
+            for (int i = 0; i < CadastrarFornecedor.cadastrarFornecedor.size(); i++) {
+                int indexfornecedor = Integer.valueOf(jCBFornecedores.getSelectedIndex());
+                if (indexfornecedor == vetor[i]) {
+                    jCBFornecedores.setSelectedItem(jTProdutos.getValueAt(linhasel, 7).toString());
+                }
+            }
+            txtDataAqui.setText(jTProdutos.getValueAt(linhasel, 8).toString());
+
         }
     }//GEN-LAST:event_jTProdutosMouseReleased
 

@@ -64,7 +64,9 @@ public class VenderProduto extends javax.swing.JFrame {
         jBPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 102, 255));
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Vender Produto"));
 
         jLabel1.setText("Quantidade: ");
@@ -117,6 +119,7 @@ public class VenderProduto extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        jTPesquisa.setBackground(new java.awt.Color(255, 255, 255));
         jTPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -180,7 +183,14 @@ public class VenderProduto extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+public int gerarCodigo() {
+        int cod = 1;
+        for (int i = 0; i < Vendas.vendas.size(); i++) {
+            cod += 1;
+        }
 
+        return cod;
+    }
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
         String pesquProduto = txtPesquisar.getText();
         limpaTabela();
@@ -195,12 +205,12 @@ public class VenderProduto extends javax.swing.JFrame {
                     CadastrarProduto.cadastrarProduto.get(posi).getQuantidade(),
                     CadastrarProduto.cadastrarProduto.get(posi).getPrecoAqui(),
                     CadastrarProduto.cadastrarProduto.get(posi).getPrecoVenda()});
-        }
+            }
         }
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
     private void jBVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVenderActionPerformed
-
+        int codVenda = gerarCodigo();
         int quantidade = Integer.parseInt(txtQuantidade.getText());
         String dataVenda = txtDataVenda.getText();
         boolean data = validarData(dataVenda);
@@ -223,17 +233,17 @@ public class VenderProduto extends javax.swing.JFrame {
                     int novaQtd = CadastrarProduto.cadastrarProduto.get(posi).getQuantidade() - quantidade;
                     valorVenda = CadastrarProduto.cadastrarProduto.get(posi).getPrecoVenda() * quantidade;
                     totalvenda += valorVenda;
-                    totalGasto += CadastrarProduto.cadastrarProduto.get(i).getPrecoAqui()*CadastrarProduto.cadastrarProduto.get(i).getQuantidade();
-                    
+                    totalGasto += (CadastrarProduto.cadastrarProduto.get(i).getPrecoAqui() * CadastrarProduto.cadastrarProduto.get(i).getQuantidade());
+
                     int codProduVendido = CadastrarProduto.cadastrarProduto.get(posi).getCodproduto();
                     nome = CadastrarProduto.cadastrarProduto.get(posi).getNome();
-                    mes = Integer.parseInt(dataVenda.substring(3,5));
-                    ano = Integer.parseInt(dataVenda.substring(6,10));
-                    
+                    mes = Integer.parseInt(dataVenda.substring(3, 5));
+                    ano = Integer.parseInt(dataVenda.substring(6, 10));
+
                     double lucro = totalvenda - totalGasto;
-                    
+
                     Vendas vendas = new Vendas();
-                    vendas.venda(codProduVendido, nome, quantidade, valorVenda, mes, ano, totalvenda,totalGasto, lucro);
+                    vendas.venda(codVenda, codProduVendido, nome, quantidade, valorVenda, mes, ano, totalvenda, totalGasto, lucro);
                     Vendas.vendas.add(vendas);
                     CadastrarProduto.cadastrarProduto.get(posi).setQuantidade(novaQtd);
                     JOptionPane.showMessageDialog(rootPane, "Venda efetuada com sucesso!");
@@ -250,10 +260,10 @@ public class VenderProduto extends javax.swing.JFrame {
                     CadastrarProduto.cadastrarProduto.get(i).getQuantidade(),
                     CadastrarProduto.cadastrarProduto.get(i).getPrecoAqui(),
                     CadastrarProduto.cadastrarProduto.get(i).getPrecoVenda()});
-        }
+            }
         }
     }//GEN-LAST:event_jBVenderActionPerformed
-  public void limpaTabela() {
+    public void limpaTabela() {
         DefaultTableModel dtm = (DefaultTableModel) jTPesquisa.getModel();
         dtm.setNumRows(0);
 
@@ -274,6 +284,7 @@ public class VenderProduto extends javax.swing.JFrame {
             return false;
         }
     }
+
     /**
      * @param args the command line arguments
      */

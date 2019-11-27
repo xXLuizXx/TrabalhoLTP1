@@ -41,6 +41,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         txtEmail.setDocument(new LimitarDigitos(40));
         txtSenha.setDocument(new LimitarDigitos(20));
         txtCargo.setDocument(new LimitarDigitos(20));
+        txtConfirmSenha.setEnabled(false);
         alterar = false;
 
         DefaultTableModel dtm = (DefaultTableModel) jTDadosUsuario.getModel();
@@ -86,6 +87,8 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         jCBSexo = new javax.swing.JComboBox<>();
         txtDataNasc = new javax.swing.JFormattedTextField();
         txtCpf = new javax.swing.JFormattedTextField();
+        txtConfirmSenha = new javax.swing.JPasswordField();
+        jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTDadosUsuario = new javax.swing.JTable();
 
@@ -97,7 +100,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
 
         jLabel2.setText("CPF: ");
 
-        jLabel3.setText("E-mail: ");
+        jLabel3.setText("E-mail:");
 
         jLabel4.setText("Senha: ");
 
@@ -165,6 +168,14 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        txtConfirmSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtConfirmSenhaActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Confirmar Senha:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -190,22 +201,26 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                         .addComponent(jBCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEmail)
-                            .addComponent(txtCargo)
-                            .addComponent(jCBSexo, 0, 200, Short.MAX_VALUE))
-                        .addGap(41, 41, 41))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jBAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                        .addComponent(jBExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtConfirmSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jCBSexo, javax.swing.GroupLayout.Alignment.TRAILING, 0, 236, Short.MAX_VALUE)
+                            .addComponent(txtEmail)
+                            .addComponent(txtCargo))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,9 +235,8 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCpf)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel7)
-                                .addComponent(jCBSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jCBSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(14, 14, 14)
@@ -241,7 +255,9 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtConfirmSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCadastrar)
@@ -320,6 +336,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             txtCargo.setEnabled(true);
             txtDataNasc.setEnabled(true);
             jCBSexo.setEnabled(true);
+            txtConfirmSenha.setEnabled(true);
             return false;
         }
     }
@@ -357,6 +374,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
 
         }
         jBCadastrar.setEnabled(true);
+        jBNovo.setEnabled(false);
         return validou;
     }
     public boolean emailRepetido(String email) {
@@ -368,6 +386,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 break;
             }
         }
+        jBNovo.setEnabled(false);
         return achou;
     }
 
@@ -380,9 +399,20 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 break;
             }
         }
+        jBNovo.setEnabled(false);
         return achou;
     }
-
+    
+    public boolean validarSenha(String senha, String confirmar){
+        boolean senhaConfere = false;
+            if(confirmar.equals(senha)){
+                senhaConfere = true;
+            }else {
+                JOptionPane.showMessageDialog(rootPane, "As senhas não correspondem!Favor verique-as.");
+            }
+        jBNovo.setEnabled(false);
+        return senhaConfere;
+    }
     private void jBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastrarActionPerformed
         int cod = gerarCodigo();
         jBCadastrar.setEnabled(false);
@@ -393,7 +423,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Verificar campos em branco");
             jBNovo.setEnabled(false);
             jBAlterar.setEnabled(false);
-        jBExcluir.setEnabled(false);
+            jBExcluir.setEnabled(false);
             jBCadastrar.setEnabled(true);
             txtEmail.setEnabled(true);
             txtNome.setEnabled(true);
@@ -401,6 +431,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             txtDataNasc.setEnabled(true);
             txtCpf.setEnabled(true);
             txtCargo.setEnabled(true);
+            txtConfirmSenha.setEnabled(true);
             jCBSexo.setEnabled(true);
         } else {
 
@@ -412,11 +443,15 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             String permi = gerarPermi();
             String dataNasc = txtDataNasc.getText();
             String sexo = String.valueOf(jCBSexo.getSelectedItem());
+            String confirmSenha = txtConfirmSenha.getText();
+            
             boolean achou = validarCPF(cpf);
             boolean achouEmail = emailRepetido(email);
             boolean validarData = validarData(dataNasc);
             boolean validou = validar_email(email);
-            if (validou == true) {
+            boolean validSenha = validarSenha(senha,confirmSenha);
+            
+            if ((validou == true)&&(validarData)) {
                 if (alterar == true) {
                     alterar = false;
                     int linhasel = jTDadosUsuario.getSelectedRow();
@@ -444,7 +479,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                     CadastrarFuncionario cadastrarUsuario = new CadastrarFuncionario();
                     cadastrarUsuario.cadastro(cod, nome, cpf, email, senha, cargo, permi, sexo, dataNasc);
 
-                    if ((!achou) && (!achouEmail) && (validarData)) {
+                    if ((!achou) && (!achouEmail) && (validarData) && (validSenha)) {
                         CadastrarFuncionario.cadastrarUsuario.add(cadastrarUsuario);
 
                         DefaultTableModel dtm = (DefaultTableModel) jTDadosUsuario.getModel();
@@ -461,6 +496,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                         txtDataNasc.setEnabled(false);
                         txtCpf.setEnabled(false);
                         txtCargo.setEnabled(false);
+                        txtConfirmSenha.setEnabled(false);
                         jCBSexo.setEnabled(false);
                     }
                 }
@@ -479,6 +515,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         txtCpf.setEnabled(true);
         txtCargo.setEnabled(true);
         txtDataNasc.setEnabled(true);
+        txtConfirmSenha.setEnabled(true);
         jCBSexo.setEnabled(true);
 
         txtNome.setText("");
@@ -487,6 +524,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         txtEmail.setText("");
         txtCargo.setText("");
         txtDataNasc.setText("");
+        txtConfirmSenha.setText("");
 
     }//GEN-LAST:event_jBNovoActionPerformed
 
@@ -511,6 +549,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         txtCargo.setEnabled(true);
         jCBSexo.setEnabled(true);
         txtEmail.setEnabled(true);
+        txtConfirmSenha.setEnabled(true);
         alterar = true;
     }//GEN-LAST:event_jBAlterarActionPerformed
 
@@ -532,6 +571,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         txtSenha.setEnabled(false);
         txtCargo.setEnabled(false);
         jCBSexo.setEnabled(false);
+        txtConfirmSenha.setEnabled(false);
         txtEmail.setEnabled(false);
     }//GEN-LAST:event_jBExcluirActionPerformed
 
@@ -546,7 +586,9 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             txtDataNasc.setEnabled(true);
             txtSenha.setEnabled(true);
             txtCargo.setEnabled(true);
+            txtConfirmSenha.setEnabled(true);
             jCBSexo.setEnabled(true);
+            
             txtEmail.setEnabled(true);
             int linhasel = jTDadosUsuario.getSelectedRow();
             txtNome.setText(jTDadosUsuario.getValueAt(linhasel, 1).toString());
@@ -554,9 +596,14 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             txtEmail.setText(jTDadosUsuario.getValueAt(linhasel, 3).toString());
             txtSenha.setText(jTDadosUsuario.getValueAt(linhasel, 4).toString());
             txtCargo.setText(jTDadosUsuario.getValueAt(linhasel, 5).toString());
+            jCBSexo.setSelectedItem(jTDadosUsuario.getValueAt(linhasel, 7).toString());
             txtDataNasc.setText(jTDadosUsuario.getValueAt(linhasel, 8).toString());
         }
     }//GEN-LAST:event_jTDadosUsuarioMouseReleased
+
+    private void txtConfirmSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtConfirmSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -607,10 +654,12 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTDadosUsuario;
     private javax.swing.JTextField txtCargo;
+    private javax.swing.JPasswordField txtConfirmSenha;
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JFormattedTextField txtDataNasc;
     private javax.swing.JTextField txtEmail;

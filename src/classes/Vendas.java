@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author luiz
  */
 public class Vendas {
+    private int codVenda;
     private String nome;
     private int codProdutoVendido;
     private int quantidade;
@@ -24,6 +25,15 @@ public class Vendas {
     
     public static ArrayList<Vendas> vendas = new ArrayList<>();
 
+    public int getCodVenda() {
+        return codVenda;
+    }
+
+    public void setCodVenda(int codVenda) {
+        this.codVenda = codVenda;
+    }
+
+    
     public double getLucro() {
         return lucro;
     }
@@ -100,7 +110,8 @@ public class Vendas {
     
     
     
-    public void venda(int cod, String nome, int quantidade, double venda, int mes, int ano, double total, double gasto, double lucro){
+    public void venda(int codVenda, int cod, String nome, int quantidade, double venda, int mes, int ano, double total, double gasto, double lucro){
+        setCodVenda(codVenda);
         setCodProdutoVendido(cod);
         setNome(nome);
         setQuantidade(quantidade);

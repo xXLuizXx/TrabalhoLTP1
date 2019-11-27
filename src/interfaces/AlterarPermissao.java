@@ -42,21 +42,23 @@ public class AlterarPermissao extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jBAlterarPermi = new javax.swing.JButton();
+        jBSalvar = new javax.swing.JButton();
         txtPermi = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTAlterarPermi = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Alterar Permissão"));
 
         jLabel1.setText("Permissão:");
 
-        jBAlterarPermi.setText("Alterar");
-        jBAlterarPermi.addActionListener(new java.awt.event.ActionListener() {
+        jBSalvar.setBackground(new java.awt.Color(255, 102, 153));
+        jBSalvar.setText("Salvar");
+        jBSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAlterarPermiActionPerformed(evt);
+                jBSalvarActionPerformed(evt);
             }
         });
 
@@ -73,7 +75,7 @@ public class AlterarPermissao extends javax.swing.JFrame {
                         .addComponent(txtPermi))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jBAlterarPermi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jBSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -84,10 +86,11 @@ public class AlterarPermissao extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtPermi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jBAlterarPermi)
+                .addComponent(jBSalvar)
                 .addGap(24, 24, 24))
         );
 
+        jTAlterarPermi.setBackground(new java.awt.Color(255, 255, 255));
         jTAlterarPermi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -152,7 +155,7 @@ public boolean permiValida(String permiDigitada) {
         }
     }//GEN-LAST:event_jTAlterarPermiMouseReleased
 
-    private void jBAlterarPermiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarPermiActionPerformed
+    private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
         alterarPerm = true;
         String permi = "";
         permi = txtPermi.getText();
@@ -163,7 +166,7 @@ public boolean permiValida(String permiDigitada) {
             jTAlterarPermi.setValueAt(permi, linhasel, 2);
             JOptionPane.showMessageDialog(rootPane, "Permissão alterada com sucesso!");
         }
-    }//GEN-LAST:event_jBAlterarPermiActionPerformed
+    }//GEN-LAST:event_jBSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,7 +204,7 @@ public boolean permiValida(String permiDigitada) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAlterarPermi;
+    private javax.swing.JButton jBSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -59,13 +59,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jCheckBQtdCaProduAno" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jCheckBQtdVendasMes" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBQtdVendasAno" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBLucroVendas" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="35" max="32767" attributes="0"/>
+                          <Component id="jCheckBQtdCaProdMes" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="10" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
@@ -85,13 +85,11 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                  <Component id="jCheckBLucroVendas" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jCheckBQtdVendasAno" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jCheckBQtdVendasMes" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                  <Component id="jCheckBQtdCaProdMes" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jCheckBQtdCaProduAno" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jBProcurarDiretorio" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtCaminho" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -104,19 +102,14 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JCheckBox" name="jCheckBLucroVendas">
+        <Component class="javax.swing.JCheckBox" name="jCheckBQtdCaProduAno">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Lucro de vendas"/>
+            <Property name="text" type="java.lang.String" value="Quantidade de produtos cadastrados no ano"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBQtdVendasAno">
+        <Component class="javax.swing.JCheckBox" name="jCheckBQtdCaProdMes">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Quantidade de produtos vendidos no ano"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBQtdVendasMes">
-          <Properties>
-            <Property name="text" type="java.lang.String" value=" Quantidade de produtos vendidos no m&#xea;s"/>
+            <Property name="text" type="java.lang.String" value=" Quantidade de produtos cadastrados no m&#xea;s"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jBGerarRela">

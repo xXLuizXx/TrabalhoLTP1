@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import Relatorios.RelatorioProdutos;
 import Relatorios.RelatorioVendas;
 import classes.CadastrarFornecedor;
 import classes.CadastrarFuncionario;
@@ -51,6 +52,7 @@ public class Principal extends javax.swing.JFrame {
         jMIEfeVenda = new javax.swing.JMenuItem();
         jMRelatorio = new javax.swing.JMenu();
         jMIRelatVendas = new javax.swing.JMenuItem();
+        jMenuIRelaProdutos = new javax.swing.JMenuItem();
         Sair = new javax.swing.JMenu();
         jM1Sair = new javax.swing.JMenuItem();
 
@@ -58,10 +60,12 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/SimpleStock.jpg"))); // NOI18N
 
-        jMenuBar1.setBackground(new java.awt.Color(0, 0, 255));
+        jMenuBar1.setBackground(new java.awt.Color(51, 51, 255));
 
+        jMUsuarios.setBackground(new java.awt.Color(51, 51, 255));
         jMUsuarios.setText("Usuarios");
 
+        jMIPerfil.setBackground(new java.awt.Color(255, 255, 255));
         jMIPerfil.setText("Perfil");
         jMIPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +74,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMUsuarios.add(jMIPerfil);
 
+        jMIGerenciarUsu.setBackground(new java.awt.Color(255, 255, 255));
         jMIGerenciarUsu.setText("Gerenciar Usuários");
         jMIGerenciarUsu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,8 +85,10 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMUsuarios);
 
+        jMFornecedores.setBackground(new java.awt.Color(51, 51, 255));
         jMFornecedores.setText("Fornecedores");
 
+        jMIGerenciarForne.setBackground(new java.awt.Color(255, 255, 255));
         jMIGerenciarForne.setText("Gerenciar Fornecedores");
         jMIGerenciarForne.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,8 +99,10 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMFornecedores);
 
+        jMProdutos.setBackground(new java.awt.Color(51, 51, 255));
         jMProdutos.setText("Produtos");
 
+        jMIGerenciarProd.setBackground(new java.awt.Color(255, 255, 255));
         jMIGerenciarProd.setText("Gerenciar Produtos");
         jMIGerenciarProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,8 +113,10 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMProdutos);
 
+        jMVendas.setBackground(new java.awt.Color(51, 51, 255));
         jMVendas.setText("Vendas");
 
+        jMIEfeVenda.setBackground(new java.awt.Color(255, 255, 255));
         jMIEfeVenda.setText("Efetuar Venda");
         jMIEfeVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,8 +127,10 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMVendas);
 
+        jMRelatorio.setBackground(new java.awt.Color(51, 51, 255));
         jMRelatorio.setText("Relatório");
 
+        jMIRelatVendas.setBackground(new java.awt.Color(255, 255, 255));
         jMIRelatVendas.setText("Vendas");
         jMIRelatVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,10 +139,20 @@ public class Principal extends javax.swing.JFrame {
         });
         jMRelatorio.add(jMIRelatVendas);
 
+        jMenuIRelaProdutos.setText("Produtos");
+        jMenuIRelaProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuIRelaProdutosActionPerformed(evt);
+            }
+        });
+        jMRelatorio.add(jMenuIRelaProdutos);
+
         jMenuBar1.add(jMRelatorio);
 
+        Sair.setBackground(new java.awt.Color(51, 51, 255));
         Sair.setText("Sair");
 
+        jM1Sair.setBackground(new java.awt.Color(255, 255, 255));
         jM1Sair.setText("Sair");
         jM1Sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,19 +196,21 @@ public class Principal extends javax.swing.JFrame {
     }
     private void jMIGerenciarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIGerenciarProdActionPerformed
         CadastroProduto cadastroProduto = new CadastroProduto();
-        if (CadastrarFornecedor.cadastrarFornecedor.size() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Cadastre um fornecedor antes de cadastrar um produto");
-        }else{
-            for (int i = 0; i < CadastrarFuncionario.cadastrarUsuario.size(); i++) {
-                if (validarAdm(codLogin)) {
+
+        for (int i = 0; i < CadastrarFuncionario.cadastrarUsuario.size(); i++) {
+            if (validarAdm(codLogin)) {
+                if (CadastrarFornecedor.cadastrarFornecedor.size() == 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Cadastre um fornecedor antes de cadastrar um produto");
+                }else{
                     cadastroProduto.setVisible(true);
                     break;
-                } else {
-                    cadastroProduto.setVisible(false);
-                    break;
                 }
+            } else {
+                cadastroProduto.setVisible(false);
+                break;
             }
         }
+
     }//GEN-LAST:event_jMIGerenciarProdActionPerformed
 
     private void jMIGerenciarUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIGerenciarUsuActionPerformed
@@ -214,12 +239,17 @@ public class Principal extends javax.swing.JFrame {
                 cadastroFornecedores.setVisible(false);
                 break;
             }
+
         }
     }//GEN-LAST:event_jMIGerenciarForneActionPerformed
 
     private void jMIEfeVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIEfeVendaActionPerformed
-        VenderProduto retirarProduto = new VenderProduto();
-        retirarProduto.setVisible(true);
+        if (CadastrarProduto.cadastrarProduto.size() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Nenhum produto cadastrado!");
+        } else {
+            VenderProduto retirarProduto = new VenderProduto();
+            retirarProduto.setVisible(true);
+        }
     }//GEN-LAST:event_jMIEfeVendaActionPerformed
 
     private void jMIPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIPerfilActionPerformed
@@ -245,7 +275,22 @@ public class Principal extends javax.swing.JFrame {
     private void jM1SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jM1SairActionPerformed
         Login login = new Login();
         login.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jM1SairActionPerformed
+
+    private void jMenuIRelaProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuIRelaProdutosActionPerformed
+        for (int i = 0; i < CadastrarFuncionario.cadastrarUsuario.size(); i++) {
+            if (validarAdm(codLogin)) {
+                RelatorioProdutos relatorioProduto = new RelatorioProdutos();
+                relatorioProduto.setVisible(true);
+                break;
+            } else {
+                RelatorioProdutos relatorioProduto = new RelatorioProdutos();
+                relatorioProduto.setVisible(false);
+                break;
+            }
+        }
+    }//GEN-LAST:event_jMenuIRelaProdutosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,5 +344,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMUsuarios;
     private javax.swing.JMenu jMVendas;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuIRelaProdutos;
     // End of variables declaration//GEN-END:variables
 }
